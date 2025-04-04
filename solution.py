@@ -5,20 +5,12 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        count = 0
-        max_count = (len(matrix) * len(matrix[0])) / 2
-        print(max_count)
-
-        for i in range(len(matrix)):
-            for j in range(len(matrix[i])):       
-                temp = matrix[i][j]
-                print(i, j)
-                print(j, (len(matrix) - 1))
-                print("")
-                matrix[i][j] = matrix[j][(len(matrix) - 1) - i]
-                matrix[j][(len(matrix) - 1) - i] = temp
-                count += 1
-                if count > max_count:
-                    break
-            if count > max_count:
-                break
+        n = len(matrix)
+        print(n)
+        for i in range(int(n / 2)):
+            for j in range(i, (n - (i + 1))):       
+                origin = matrix[i][j]
+                matrix[i][j] = matrix[n - j - 1][i]
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]
+                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1]
+                matrix[j][n - i - 1] = origin
